@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add new part</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="heading">
+                <img src="/img/logo.png" alt="Detail" class="logo">
+                <nav>
+                    <ul class="menu">
+                        <li>
+                             <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/types">Types</a>
+                        </li>
+                        <li>
+                            <a href="/all_models">Models</a>
+                        </li>
+                        <li>
+                            <a href="/all_parts">Parts</a>
+                        </li>
+                    </ul>
+                </nav>    
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="mainfield">
+                <div class="tytle">
+                        <span>Add new part</span>
+                </div>
+
+				<form th:action = '${"/types/info/type_id=" + id + "/model_id=" + model_id + "/parts/add_new"}' method="post" modelAttribute="part">
+				    <label for = "name">Name</label>
+				    <input type = "text" name = "name" id = "name">
+				    <label for = "spec">Specification</label>
+				    <input type = "text" name = "spec" id = "spec">
+				    <input type="submit" value="Add">
+				</form>
+			</div>
+
+            <div class="bottom_bar">
+                <form th:method="get" th:action='${"/types/info/type_id=" + id + "/model_id=" + model_id + "/parts"}'>
+                    <input type="submit" value="Back">
+                </form> 
+            </div>
+		</div>
+	</section>
+</body>
+</html>

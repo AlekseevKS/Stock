@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Types page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="heading">
+                <img src="/img/logo.png" alt="Detail" class="logo">
+                <nav>
+                    <ul class="menu">
+                        <li>
+                             <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/types">Types</a>
+                        </li>
+                        <li>
+                            <a href="/all_models">Models</a>
+                        </li>
+                        <li>
+                            <a href="/all_parts">Parts</a>
+                        </li>
+                    </ul>
+                </nav>    
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="mainfield">
+                <div class="tytle">
+                        <span>Types list</span>
+                </div>
+
+                <div class="search_bar">
+                    <form th:method="post" th:action='${"/types"}'>
+                        <input type="text" placeholder="Search..." name="filter" id="filter">
+                        <input type="submit" value="Find">
+                    </form>
+                </div>
+
+                <table>
+                <thead>
+                <tr>
+                    <th>Type ID</th>
+                    <th>Type name</th>
+                    <th>Models</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="type: ${types}">
+                    <td th:text="${type.id}"></td>
+                    <td th:text="${type.typeName}"></td>
+                    <td>#</td>
+                    <td>
+                        <form th:method="delete" th:action='${"types/delete/type_id=" + type.id}'>
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                    <td>
+                        <form th:method="get" th:action='${"types/edit/type_id=" + type.id}'>
+                            <input type="submit" value="Edit">
+                        </form>
+                    </td>
+                    <td>
+                        <form th:method="get" th:action='${"types/info/type_id=" + type.id}'>
+                            <input type="submit" value="Info">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>        
+            </div>
+
+            <div class="bottom_bar">
+                <form th:method="get" th:action='${"types/new"}'>
+                    <input type="submit" value="Add">
+                </form> 
+
+                <div class="total_count">
+                        TOTAL COUNT:&nbsp
+                        <span th:text="${size}"></span>
+                </div>
+
+
+                <form th:method="post" th:action='${"types/add_income"}'>
+                    <input type="submit" value="Add income">
+                </form>
+                <form th:method="post" th:action='${"types/add_outcome"}'>
+                    <input type="submit" value="Outcome">
+                </form>
+
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+<!-- <table>
+
+    <form th:method="post" th:action='${"/types"}'>
+        <input type="text" name="filter" id="filter">
+        <input type="submit" value="Find">
+    </form>
+
+    <tbody>
+    <tr th:each="part: ${parts}">
+        <td th:text="${part.id}"></td>
+        <td th:text="${part.name}"></td>
+        <td th:text="${part.spec}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+        <tr th:each="long: ${partsQty}">
+            <td th:text="${long}"></td>
+    </tbody>
+</table>
+
+<form th:method="post" th:action='${"types/add_income"}'>
+    <input type="submit" value="Add income">
+</form>
+<form th:method="post" th:action='${"types/add_outcome"}'>
+    <input type="submit" value="Outcome">
+</form>
+<span th:text="${totalItems}"></span> -->
